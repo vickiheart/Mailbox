@@ -16,7 +16,10 @@ The following **required** functionality is complete:
 * [x] After 60 pts, the archive icon should start moving with the translation and the background should change to green. Upon release, the message should continue to reveal the green background. When the animation it complete, it should hide the message.
 * [x] After 260 pts, the icon should change to the delete icon and the background color should change to red. Upon release, the message should continue to reveal the red background. When the animation it complete, it should hide the message.
 
-The following **additional** refactoring was implemented:
+The following **optional** refactoring was implemented:
+* [x] Optional: Panning from the edge should reveal the menu. If the menu is being revealed when the user lifts their finger, it should continue revealing. If the menu is being hidden when the user lifts their finger, it should continue hiding.
+
+The following **additional** refactoring were implemented:
 * [x] Enumerations and switch statements for pan states
 * [x] Switch statements for pan states
 
