@@ -30,6 +30,7 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var feedView: UIImageView!
     @IBOutlet weak var listView: UIImageView!
     @IBOutlet weak var rescheduleView: UIImageView!
+    @IBOutlet weak var screenView: UIView!
     
     var messageOriginalCenter: CGPoint!
     var currentMessageState: MessageState!
@@ -115,6 +116,10 @@ class MailboxViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.contentSize = CGSize(width: 320, height: 1222)
+        
+        var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "didPanEdge:")
+        edgeGesture.edges = UIRectEdge.Left
+        screenView.addGestureRecognizer(edgeGesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -222,6 +227,25 @@ class MailboxViewController: UIViewController {
     }
     }
 
+    @IBAction func didPanEdge(sender: UIScreenEdgePanGestureRecognizer) {
+        
+        if sender.state == UIGestureRecognizerState.Changed {
+            self.screenView.frame.origin.x = sender.translationInView(view).x
+        }
+    
+        if sender.state == UIGestureRecognizerState.Ended {
+            if sender.translationInView(view).x > 100 {
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    self.screenView.frame.origin.x = 280
+                })
+            } else {
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.screenView.frame.origin.x = 0
+            })
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
